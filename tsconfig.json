@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@box-ik/ng-cheat-codes": [
+        "dist/box-ik/ng-cheat-codes"
+      ],
+      "@box-ik/ng-cheat-codes/*": [
+        "dist/box-ik/ng-cheat-codes/*"
+      ]
+    }
   }
 }

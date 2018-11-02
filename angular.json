@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "box-ik",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -127,6 +127,41 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@box-ik/ng-cheat-codes": {
+      "root": "projects/box-ik/ng-cheat-codes",
+      "sourceRoot": "projects/box-ik/ng-cheat-codes/src",
+      "projectType": "library",
+      "prefix": "box-ik",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/box-ik/ng-cheat-codes/tsconfig.lib.json",
+            "project": "projects/box-ik/ng-cheat-codes/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/box-ik/ng-cheat-codes/src/test.ts",
+            "tsConfig": "projects/box-ik/ng-cheat-codes/tsconfig.spec.json",
+            "karmaConfig": "projects/box-ik/ng-cheat-codes/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/box-ik/ng-cheat-codes/tsconfig.lib.json",
+              "projects/box-ik/ng-cheat-codes/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
