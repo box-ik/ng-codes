@@ -8,3 +8,5 @@ export enum SpecialKey {
 }
 
 export const UnusedKeys = ['Escape', 'Backspace', 'CapsLock', 'Tab'];
+
+export const InputTags = ['input', 'textarea'];
