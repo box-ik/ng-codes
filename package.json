@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test:lib": "ng test @box-ik/ng-cheat-codes --watch=false",
+    "test:lib": "ng test @box-ik/ng-cheat-codes",
     "lint:lib": "ng lint @box-ik/ng-cheat-codes",
     "build:lib": "ng build @box-ik/ng-cheat-codes"
   },
