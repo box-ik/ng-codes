@@ -33,8 +33,8 @@ export function isLowerCase(key: string): boolean {
 
 export function sort(cheatCodes: BoxIkCheatCode[]): BoxIkCheatCode[] {
   return cheatCodes.sort((a, b) => {
-    if (a[0] < b[0]) { return -1; }
-    if (a[0] > b[0]) { return 1; }
+    if (a.code < b.code) { return -1; }
+    if (a.code > b.code) { return 1; }
     return 0;
   });
 }

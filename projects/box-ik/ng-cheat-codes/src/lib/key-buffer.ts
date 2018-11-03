@@ -20,7 +20,7 @@ export class KeyBuffer {
 
   match(cheatCodes: BoxIkCheatCode[]): BoxIkCheatCode | null {
     for(let cheatCode of cheatCodes.reverse()) {
-      if (this.buffer.includes(cheatCode[0])) {
+      if (this.buffer.includes(cheatCode.code)) {
         this.reset();
         return cheatCode;
       }

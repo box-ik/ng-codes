@@ -2,7 +2,6 @@
 import { BoxIkCheatCode, CheatCodeError } from './types';
 import { sort } from './utils';
 import { cheatCodeErrors, cheatCodeListErrors } from './validation';
-import { merge } from 'rxjs';
 
 export class CheatCodeStorage {
 

@@ -10,13 +10,8 @@ import { CheatCodeStorage } from './cheat-code-storage';
 })
 export class BoxIkCheatCodesService implements OnDestroy {
 
-  public useCheatCodes(code: BoxIkCheatCode | BoxIkCheatCode[]) {
-    let errors;
-    if (Array.isArray(code)) {
-      errors = this.storage.addList(code);
-    } else {
-      errors = this.storage.addList([code]);
-    }
+  public useCheatCodes(codes: BoxIkCheatCode[]) {
+    let errors = this.storage.addList(codes);
     if (errors) {
       errors.forEach(error => {
         error.print();
@@ -28,7 +23,7 @@ export class BoxIkCheatCodesService implements OnDestroy {
     this.storage.clear();
   }
 
-  public cheatCode(): Observable<BoxIkCheatCode> {
+  get cheatCode(): Observable<BoxIkCheatCode> {
     return this.match$.asObservable();
   }
 

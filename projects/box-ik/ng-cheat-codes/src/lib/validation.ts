@@ -1,6 +1,6 @@
 
 import { BoxIkCheatCode, CheatCodeSymbolsError, CheatCodeUnreachableError, CheatCodeDuplicateError, CheatCodeError } from './types';
-import { SpecialKey, AllSpecialKeys } from './constants';
+import { AllSpecialKeys } from './constants';
 import { isLowerCase } from './utils';
 
 /**
@@ -9,7 +9,7 @@ import { isLowerCase } from './utils';
  */
 export function cheatCodeErrors(cheatCode: BoxIkCheatCode): CheatCodeSymbolsError | null {
   const invalidSymbols = [];
-  for(let char of cheatCode[0]) {
+  for(let char of cheatCode.code) {
     if (AllSpecialKeys.includes(char)) {
       continue;
     }
@@ -31,17 +31,18 @@ export function cheatCodeErrors(cheatCode: BoxIkCheatCode): CheatCodeSymbolsErro
 export function cheatCodeListErrors(cheatCodes: BoxIkCheatCode[]): CheatCodeError[] | null {
   let errors = [];
   for(let i = 0; i < cheatCodes.length; ++i) {
-    let code = cheatCodes[i];
-    for (let j = 1; j < cheatCodes.length; ++j) {
+    let current = cheatCodes[i];
+    
+    for (let j = i + 1; j < cheatCodes.length; ++j) {
       let other = cheatCodes[j];
-      if (other[0] === code[0]) {
+      if (other.code === current.code) {
         errors.push(new CheatCodeDuplicateError(other));
       }
-      if (other[0].endsWith(code[0])) {
+      if (other.code.endsWith(current.code)) {
         continue;
       }
-      if (other.includes(code)) {
-        errors.push(new CheatCodeUnreachableError(code, other));
+      if (other.code.includes(current.code)) {
+        errors.push(new CheatCodeUnreachableError(current, other));
       }
     }
   }
