@@ -3,18 +3,29 @@ import { KeyListener } from './key-listener';
 import { Observable, Subject } from 'rxjs';
 import { BoxIkCheatCode } from './types';
 import { KeyBuffer } from './key-buffer';
+import { CheatCodeStorage } from './cheat-code-storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoxIkCheatCodesService implements OnDestroy {
 
-  public addCode(code: BoxIkCheatCode) {
-    this.cheatCodes.push(code);
+  public useCheatCodes(code: BoxIkCheatCode | BoxIkCheatCode[]) {
+    let errors;
+    if (Array.isArray(code)) {
+      errors = this.storage.addList(code);
+    } else {
+      errors = this.storage.addList([code]);
+    }
+    if (errors) {
+      errors.forEach(error => {
+        error.print();
+      });
+    }
   }
 
   public removeAllCodes() {
-    this.cheatCodes = [];
+    this.storage.clear();
   }
 
   public cheatCode(): Observable<BoxIkCheatCode> {
@@ -22,12 +33,13 @@ export class BoxIkCheatCodesService implements OnDestroy {
   }
 
   constructor() {
+    this.storage = new CheatCodeStorage();
     this.keyListener = new KeyListener();
     this.keyBuffer = new KeyBuffer();
     this.keyListener.observable().subscribe(this.onKey.bind(this));
   }
 
-  private cheatCodes: BoxIkCheatCode[] = [];
+  private storage: CheatCodeStorage;
   private keyListener: KeyListener;
   private keyBuffer: KeyBuffer;
   private match$: Subject<BoxIkCheatCode> = new Subject();
@@ -38,7 +50,7 @@ export class BoxIkCheatCodesService implements OnDestroy {
 
   private onKey(key: string) {
     this.keyBuffer.append(key);
-    const match = this.keyBuffer.match(this.cheatCodes);
+    const match = this.keyBuffer.match(this.storage.cheatCodes);
     if (match) {
       this.match$.next(match);
     }
