@@ -1,9 +1,11 @@
 
 export { BoxIkCheatCode } from './box-ik-cheat-code';
+export { SpecialKeys } from './special-keys';
 
 export {
   CheatCodeError,
-  InvalidCheatCode,
+  EmptyCheatCode,
+  InvalidSymbolsInCheatCode,
   DuplicateCheatCode,
   UnreachableCheatCode
 } from './errors';

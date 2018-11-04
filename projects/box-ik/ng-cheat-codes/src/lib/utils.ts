@@ -1,6 +1,5 @@
 
-import { SpecialKey, UnusedKeys, InputTags } from './constants';
-import { BoxIkCheatCode } from './types';
+import { BoxIkCheatCode, SpecialKeys } from './types';
 
 export function filterKeysWithModifiers(event: KeyboardEvent): boolean {
   return !(
@@ -12,23 +11,21 @@ export function filterKeysWithModifiers(event: KeyboardEvent): boolean {
 }
 
 export function filterUnusedKeys(event: KeyboardEvent): boolean {
-  return !UnusedKeys.includes(event.key);
+  const unusedKeys = ['Escape', 'Backspace', 'CapsLock', 'Tab'];
+  return !unusedKeys.includes(event.key);
 }
 
 export function filterAllWhenInputTagActive(): boolean {
-  return !InputTags.includes(activeTag());
+  const inputTags = ['input', 'textarea'];
+  return !inputTags.includes(activeTag());
 }
 
 export function normalizeKey(key: string): string {
-  return SpecialKey[key] || key.toLowerCase();
+  return SpecialKeys[key] || key.toLowerCase();
 }
 
 export function activeTag(): string {
   return document.activeElement.tagName.toLowerCase();
-}
-
-export function isLowerCase(key: string): boolean {
-  return key.toLowerCase() === key;
 }
 
 export function sort(cheatCodes: BoxIkCheatCode[]): BoxIkCheatCode[] {

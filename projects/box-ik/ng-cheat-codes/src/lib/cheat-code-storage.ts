@@ -1,7 +1,7 @@
 
 import { BoxIkCheatCode, CheatCodeError } from './types';
+import { checkForInvalidSymbols, checkForListErrors } from './util';
 import { sort } from './utils';
-import { cheatCodeErrors, cheatCodeListErrors } from './validation';
 
 export class CheatCodeStorage {
 
@@ -10,24 +10,24 @@ export class CheatCodeStorage {
   }
   private _cheatCodes: BoxIkCheatCode[] = [];
 
-  addList(cheatCodes: BoxIkCheatCode[]): CheatCodeError[] | null {
+  add(cheatCodes: BoxIkCheatCode[]): CheatCodeError[] | null {
 
     let errors: CheatCodeError[] = [];
     const validCodes: BoxIkCheatCode[] = [];
     
     // validate each code
-    for(let code of cheatCodes) {
-      const codeError = cheatCodeErrors(code);
+    for(let cheatCode of cheatCodes) {
+      const codeError = checkForInvalidSymbols(cheatCode);
       if (codeError) {
         errors.push(codeError);
       } else {
-        validCodes.push(code);
+        validCodes.push(cheatCode);
       }
     }
 
     // validate list
     const mergedList = sort([...this._cheatCodes, ...validCodes]);
-    const listErrors = cheatCodeListErrors(mergedList);
+    const listErrors = checkForListErrors(mergedList);
     if (listErrors) {
       errors = [...errors, ...listErrors];
     }

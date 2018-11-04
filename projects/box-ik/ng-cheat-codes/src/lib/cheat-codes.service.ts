@@ -11,7 +11,7 @@ import { CheatCodeStorage } from './cheat-code-storage';
 export class BoxIkCheatCodesService implements OnDestroy {
 
   public useCheatCodes(codes: BoxIkCheatCode[]) {
-    let errors = this.storage.addList(codes);
+    let errors = this.storage.add(codes);
     if (errors) {
       errors.forEach(error => {
         error.print();

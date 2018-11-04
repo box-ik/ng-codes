@@ -1,6 +1,6 @@
 
 import { BoxIkCheatCode } from './box-ik-cheat-code';
-import { CheatCodeError, InvalidCheatCode, UnreachableCheatCode, DuplicateCheatCode } from './errors';
+import { CheatCodeError, EmptyCheatCode, InvalidSymbolsInCheatCode, UnreachableCheatCode, DuplicateCheatCode } from './errors';
 
 describe('[types]: custom errors', () => {
 
@@ -31,9 +31,17 @@ describe('[types]: custom errors', () => {
     expect(warnSpy).toHaveBeenCalledWith(message);
   });
 
-  it('InvalidCheatCode', () => {
+  it('EmptyCheatCode', () => {
+    const error = new EmptyCheatCode();
+    error.print();
+    const message = error.message;
+    expect(message).toEqual('Cheat Code is Empty');
+    expect(errorSpy).toHaveBeenCalledWith(message);
+  });
+
+  it('InvalidSymbolsInCheatCode', () => {
     const code = new BoxIkCheatCode('XUUDDLRLRba');
-    const error = new InvalidCheatCode(code, ['X']);
+    const error = new InvalidSymbolsInCheatCode(code, ['X']);
     error.print();
     const message = error.message;
     expect(message).toEqual(`Cheat Code 'XUUDDLRLRba' has invalid symbols [X]`);
