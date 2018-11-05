@@ -2,7 +2,8 @@
 
 import { Observable, fromEvent, Subject } from 'rxjs';
 import { takeUntil, filter, map } from 'rxjs/operators';
-import { filterKeysWithModifiers, filterUnusedKeys, filterAllWhenInputTagActive, normalizeKey} from './utils';
+import { filterKeysWithModifiers, filterUnusedKeys, filterAllWhenTextInputsActive} from './util';
+import { normalizeKey } from './utils';
 
 export class KeyListener {
 
@@ -12,7 +13,7 @@ export class KeyListener {
     return fromEvent(document, 'keydown').pipe(
       takeUntil(this.destroy$),
       filter(_ => !this.paused),
-      filter(filterAllWhenInputTagActive),
+      filter(filterAllWhenTextInputsActive),
       filter(filterKeysWithModifiers),
       filter(filterUnusedKeys),
       map(event => normalizeKey(event.key))
