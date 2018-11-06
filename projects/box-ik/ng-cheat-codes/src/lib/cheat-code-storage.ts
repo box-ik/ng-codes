@@ -1,7 +1,7 @@
 
 import { BoxIkCheatCode, CheatCodeError } from './types';
 import { checkForInvalidSymbols, checkForListErrors } from './util';
-import { sort } from './util';
+import { sortCheatCodes } from './util';
 
 export class CheatCodeStorage {
 
@@ -26,7 +26,7 @@ export class CheatCodeStorage {
     }
 
     // validate list
-    const mergedList = sort([...this._cheatCodes, ...validCodes]);
+    const mergedList = sortCheatCodes([...this._cheatCodes, ...validCodes]);
     const listErrors = checkForListErrors(mergedList);
     if (listErrors) {
       errors = [...errors, ...listErrors];

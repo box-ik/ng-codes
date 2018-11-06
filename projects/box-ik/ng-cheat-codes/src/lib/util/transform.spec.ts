@@ -25,9 +25,6 @@ describe('[util]: transform', () => {
       new BoxIkCheatCode('longcheatcode')
     ];
     const sorted = sortCheatCodes(list);
-    for(let code of sorted) {
-      console.warn(code.code);
-    }
     expect(sorted[0].code).toEqual('sh');
     expect(sorted[1].code).toEqual('middle');
     expect(sorted[2].code).toEqual('longcheatcode');

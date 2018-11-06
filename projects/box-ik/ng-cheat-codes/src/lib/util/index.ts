@@ -12,5 +12,5 @@ export {
 
 export {
   normalizeKey,
-  sort
+  sortCheatCodes
 } from './transform';
