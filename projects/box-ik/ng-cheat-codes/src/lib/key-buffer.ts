@@ -11,23 +11,29 @@ export class KeyBuffer {
       this.reset();
     }
     this.timestamp = time;
-    this.buffer += key;
+    this._buffer += key;
   }
 
   reset() {
-    this.buffer = '';
+    this._buffer = '';
   }
 
   match(cheatCodes: BoxIkCheatCode[]): BoxIkCheatCode | null {
-    for(let cheatCode of cheatCodes.reverse()) {
-      if (this.buffer.includes(cheatCode.code)) {
+    for(let i = cheatCodes.length - 1; i >= 0; --i) {
+      const cheatCode = cheatCodes[i];
+      if (this._buffer.includes(cheatCode.code)) {
         this.reset();
         return cheatCode;
       }
     }
+    return null;
   }
 
-  private buffer = '';
+  get buffer(): string {
+    return this._buffer;
+  }
+
+  private _buffer = '';
 
   private timestamp = 0;
 }
