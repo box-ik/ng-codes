@@ -3,7 +3,7 @@
 import { Observable, fromEvent, Subject } from 'rxjs';
 import { takeUntil, filter, map } from 'rxjs/operators';
 import { filterKeysWithModifiers, filterUnusedKeys, filterAllWhenTextInputsActive} from './util';
-import { normalizeKey } from './utils';
+import { normalizeKey } from './util';
 
 export class KeyListener {
 

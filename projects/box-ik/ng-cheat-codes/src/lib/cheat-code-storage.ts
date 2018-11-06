@@ -1,7 +1,7 @@
 
 import { BoxIkCheatCode, CheatCodeError } from './types';
 import { checkForInvalidSymbols, checkForListErrors } from './util';
-import { sort } from './utils';
+import { sort } from './util';
 
 export class CheatCodeStorage {
 

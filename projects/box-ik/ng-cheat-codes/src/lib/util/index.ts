@@ -9,3 +9,8 @@ export {
   filterUnusedKeys,
   filterAllWhenTextInputsActive
 } from './filters';
+
+export {
+  normalizeKey,
+  sort
+} from './transform';
