@@ -1,6 +1,6 @@
 
 import { CheatCodeStorage } from './cheat-code-storage';
-import { BoxIkCheatCode, InvalidSymbolsInCheatCode, UnreachableCheatCode } from './types';
+import { BoxIkCheatCode, EmptyCheatCode, InvalidSymbolsInCheatCode, UnreachableCheatCode, DuplicateCheatCode } from './types';
 
 describe('CheatCodeStorage', () => {
 
@@ -20,6 +20,16 @@ describe('CheatCodeStorage', () => {
     expect(storage.cheatCodes[1].code).toEqual('UUDDLRLRba');
   });
 
+  it('add empty code', () => {
+    const storage = new CheatCodeStorage();
+    const errors = storage.add([
+      new BoxIkCheatCode('')
+    ]);
+    expect(Array.isArray(errors)).toBeTruthy();
+    expect(errors.length).toEqual(1);
+    expect(errors[0] instanceof EmptyCheatCode).toBeTruthy();
+  });
+
   it('add invalid code', () => {
     const storage = new CheatCodeStorage();
     const errors = storage.add([
@@ -28,6 +38,19 @@ describe('CheatCodeStorage', () => {
     expect(Array.isArray(errors)).toBeTruthy();
     expect(errors.length).toEqual(1);
     expect(errors[0] instanceof InvalidSymbolsInCheatCode).toBeTruthy();
+  });
+
+  it('add duplicate', () => {
+    const storage = new CheatCodeStorage();
+    const errors = storage.add([
+      new BoxIkCheatCode('UUDDLRLRba'),
+      new BoxIkCheatCode('UUDDLRLRba'),
+    ]);
+    expect(Array.isArray(errors)).toBeTruthy();
+    expect(errors.length).toEqual(1);
+    expect(errors[0] instanceof DuplicateCheatCode).toBeTruthy();
+
+    expect(storage.cheatCodes.length).toEqual(1);
   });
 
   it('add unreachable code', () => {
@@ -40,7 +63,7 @@ describe('CheatCodeStorage', () => {
     expect(errors.length).toEqual(1);
     expect(errors[0] instanceof UnreachableCheatCode).toBeTruthy();
 
-    expect(storage.cheatCodes.length).toEqual(2);
+    expect(storage.cheatCodes.length).toEqual(1);
   });
 
   it('clear', () => {

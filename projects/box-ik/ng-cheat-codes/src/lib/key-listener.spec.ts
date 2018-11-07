@@ -22,6 +22,7 @@ describe('KeyListener', () => {
     const keyListener = new KeyListener();
     keyListener.observable().subscribe(observer);
     keyListener.destroy();
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'q' }));
     expect(observer.next).not.toHaveBeenCalled();
     expect(observer.error).not.toHaveBeenCalled();
     expect(observer.complete).toHaveBeenCalled();

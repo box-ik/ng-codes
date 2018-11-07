@@ -26,12 +26,15 @@ export class CheatCodeStorage {
     }
 
     // validate list
-    const mergedList = sortCheatCodes([...this._cheatCodes, ...validCodes]);
+    let mergedList = sortCheatCodes([...this._cheatCodes, ...validCodes]);
     const listErrors = checkForListErrors(mergedList);
     if (listErrors) {
       errors = [...errors, ...listErrors];
+      // filter unreachable and duplicates
+      const invalidCodes = listErrors.map(error => error.invalidCheatCode);
+      mergedList = mergedList.filter(code => !invalidCodes.includes(code));
     }
-    
+
     this._cheatCodes = mergedList;
 
     if (errors.length > 0) {

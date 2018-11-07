@@ -1,14 +1,13 @@
 
 import { KeyBuffer } from './key-buffer';
 import { BoxIkCheatCode } from './types';
-import { CIRCULAR } from '@angular/core/src/render3/instructions';
 
 describe('KeyBuffer', () => {
 
   it('initialization', () => {
     const keyBuffer = new KeyBuffer();
     expect(keyBuffer.buffer).toEqual('');
-    expect(keyBuffer.autoResetTime).toEqual(1000);
+    expect(keyBuffer.resetInputInterval).toEqual(1000);
   });
 
   it('append', (done) => {
@@ -21,7 +20,7 @@ describe('KeyBuffer', () => {
     expect(keyBuffer.buffer).toEqual('qwe');
     
     // append after time limit
-    keyBuffer.autoResetTime = 10;
+    keyBuffer.resetInputInterval = 10;
     setTimeout(() => {
       keyBuffer.append('r');
       keyBuffer.append('t');
