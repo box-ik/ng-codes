@@ -7,7 +7,7 @@ describe('[util]: transform', () => {
   it('[normalizeKey]', () => {
     // special
     const specialOriginal = ['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'Enter', 'Spacebar'];
-    const specialNormalized = ['U', 'R', 'D', 'L', 'E', 'S'];
+    const specialNormalized = ['↑', '→', '↓', '←', '↵', ' '];
     for(let i = 0; i < specialOriginal.length; ++i) {
       const original = specialOriginal[i];
       const normalized = specialNormalized[i];

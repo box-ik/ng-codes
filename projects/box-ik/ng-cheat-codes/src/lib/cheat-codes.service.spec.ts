@@ -26,7 +26,7 @@ describe('BoxIkCheatCodesService', () => {
 
   it('use valid cheat code', () => {
     service.use([
-      new BoxIkCheatCode('UUDDLRLRba'),
+      new BoxIkCheatCode('↑↑↓↓←→←→ba'),
     ]);
     expect(service.list().length).toEqual(1);
   });
@@ -45,8 +45,8 @@ describe('BoxIkCheatCodesService', () => {
     // duplicated cheat codes could not be added to list
     // warning will be logged
     service.use([
-      new BoxIkCheatCode('UUDDLRLRba'),
-      new BoxIkCheatCode('UUDDLRLRba')
+      new BoxIkCheatCode('↑↑↓↓←→←→ba'),
+      new BoxIkCheatCode('↑↑↓↓←→←→ba')
     ]);
     expect(service.list().length).toEqual(1);
   });
@@ -55,15 +55,15 @@ describe('BoxIkCheatCodesService', () => {
     // unreachable cheat codes could not be added to list
     // warning will be logged
     service.use([
-      new BoxIkCheatCode('UUDDLRLRba'),
-      new BoxIkCheatCode('UUDD')
+      new BoxIkCheatCode('↑↑↓↓←→←→ba'),
+      new BoxIkCheatCode('↑↑↓↓')
     ]);
     expect(service.list().length).toEqual(1);
   });
 
   it('removeAll', () => {
     service.use([
-      new BoxIkCheatCode('UUDDLRLRba')
+      new BoxIkCheatCode('↑↑↓↓←→←→ba')
     ]);
     service.removeAll();
     expect(service.list().length).toEqual(0);
@@ -72,29 +72,29 @@ describe('BoxIkCheatCodesService', () => {
   it('cheatCode (subscription)', () => {
     service.cheatCode.subscribe(observer);
 
-    enterCode('UUDDLRLRba');
-    service.use([new BoxIkCheatCode('UUDDLRLRba')]);
-    enterCode('UUDDLRLRba');
+    enterCode('↑↑↓↓←→←→ba');
+    service.use([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
+    enterCode('↑↑↓↓←→←→ba');
 
     expect(observer.next).toHaveBeenCalledTimes(1);
   });
 
   it('paused', () => {
     service.cheatCode.subscribe(observer);
-    service.use([new BoxIkCheatCode('UUDDLRLRba')]);
+    service.use([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
     service.paused = true;
-    enterCode('UUDDLRLRba');
+    enterCode('↑↑↓↓←→←→ba');
 
     expect(observer.next).not.toHaveBeenCalled();
   });
 
   it('autoResetInterval', (done) => {
     service.cheatCode.subscribe(observer);
-    service.use([new BoxIkCheatCode('UUDDLRLRba')]);
+    service.use([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
     service.resetInputInterval = 10;
-    enterCode('UUDD');
+    enterCode('↑↑↓↓');
     setTimeout(() => {
-      enterCode('LRLRba');
+      enterCode('←→←→ba');
       expect(observer.next).not.toHaveBeenCalled();
       done();
     }, 11);
@@ -103,12 +103,12 @@ describe('BoxIkCheatCodesService', () => {
 
 const enterCode = (code: string) => {
   const map = {
-    'U': 'ArrowUp',
-    'R': 'ArrowRight',
-    'D': 'ArrowDown',
-    'L': 'ArrowLeft',
-    'E': 'Enter',
-    'S': 'Spacebar'
+    '↑': 'ArrowUp',
+    '→': 'ArrowRight',
+    '↓': 'ArrowDown',
+    '←': 'ArrowLeft',
+    '↵': 'Enter',
+    ' ': 'Spacebar'
   };
   for(let key of code) {
     document.dispatchEvent(new KeyboardEvent('keydown', { key: map[key] || key }));

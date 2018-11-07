@@ -12,12 +12,13 @@ describe('CheatCodeStorage', () => {
   it('add valid codes', () => {
     const storage = new CheatCodeStorage();
     const errors = storage.add([
-      new BoxIkCheatCode('UUDDLRLRba'),
-      new BoxIkCheatCode('acUbUbaD'),
+      new BoxIkCheatCode('↑↑↓↓←→←→ba'),
+      new BoxIkCheatCode('ac↑b↑ba↓'),
     ]);
+
     expect(errors).toBeNull();
-    expect(storage.cheatCodes[0].code).toEqual('acUbUbaD');
-    expect(storage.cheatCodes[1].code).toEqual('UUDDLRLRba');
+    expect(storage.cheatCodes[0].code).toEqual('ac↑b↑ba↓');
+    expect(storage.cheatCodes[1].code).toEqual('↑↑↓↓←→←→ba');
   });
 
   it('add empty code', () => {
@@ -43,8 +44,8 @@ describe('CheatCodeStorage', () => {
   it('add duplicate', () => {
     const storage = new CheatCodeStorage();
     const errors = storage.add([
-      new BoxIkCheatCode('UUDDLRLRba'),
-      new BoxIkCheatCode('UUDDLRLRba'),
+      new BoxIkCheatCode('ac↑b↑ba↓'),
+      new BoxIkCheatCode('ac↑b↑ba↓'),
     ]);
     expect(Array.isArray(errors)).toBeTruthy();
     expect(errors.length).toEqual(1);
@@ -55,9 +56,9 @@ describe('CheatCodeStorage', () => {
 
   it('add unreachable code', () => {
     const storage = new CheatCodeStorage();
-    storage.add([new BoxIkCheatCode('UUDDLRLRba')]);
+    storage.add([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
     const errors = storage.add([
-      new BoxIkCheatCode('UUDD')
+      new BoxIkCheatCode('↑↑↓↓')
     ]);
     expect(Array.isArray(errors)).toBeTruthy();
     expect(errors.length).toEqual(1);
@@ -68,7 +69,7 @@ describe('CheatCodeStorage', () => {
 
   it('clear', () => {
     const storage = new CheatCodeStorage();
-    storage.add([new BoxIkCheatCode('UUDDLRLRba')]);
+    storage.add([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
     storage.clear();
     expect(storage.cheatCodes.length).toEqual(0);
   });

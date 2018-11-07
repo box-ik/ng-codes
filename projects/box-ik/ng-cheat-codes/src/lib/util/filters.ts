@@ -1,7 +1,6 @@
 
 export function filterKeysWithModifiers(event: KeyboardEvent): boolean {
   return !(
-    event.shiftKey ||
     event.ctrlKey ||
     event.altKey ||
     event.metaKey
@@ -9,7 +8,7 @@ export function filterKeysWithModifiers(event: KeyboardEvent): boolean {
 }
 
 export function filterUnusedKeys(event: KeyboardEvent): boolean {
-  const unusedKeys = ['Escape', 'Backspace', 'CapsLock', 'Tab'];
+  const unusedKeys = ['Escape', 'Backspace', 'CapsLock', 'Tab', 'Shift'];
   return !unusedKeys.includes(event.key);
 }
 

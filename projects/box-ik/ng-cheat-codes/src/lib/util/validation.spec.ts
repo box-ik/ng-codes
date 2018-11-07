@@ -17,22 +17,22 @@ describe('[util]: validation', () => {
   });
 
   it('[checkForInvalidSymbols]: invalid code', () => {
-    const code = new BoxIkCheatCode('NotValidCheatCode');
-    const error = checkForInvalidSymbols(code);
+    let code = new BoxIkCheatCode('NotValidCheatCode');
+    let error = checkForInvalidSymbols(code);
     expect(error).toBeDefined();
     expect(error instanceof InvalidSymbolsInCheatCode).toBeTruthy();
   });
 
   it('[checkForInvalidSymbols]: valid code', () => {
-    const code = new BoxIkCheatCode('testSURDLE');
+    const code = new BoxIkCheatCode('test ↑→↓←↵');
     const error = checkForInvalidSymbols(code);
     expect(error).toBeNull();
   });
 
   it('[checkForListErrors]: list with duplicates', () => {
     const list = [
-      new BoxIkCheatCode('acUbUbaD'),
-      new BoxIkCheatCode('acUbUbaD')
+      new BoxIkCheatCode('ac↑b↑ba↓'),
+      new BoxIkCheatCode('ac↑b↑ba↓')
     ];
     const errors = checkForListErrors(list);
     expect(errors.length).toEqual(1);
@@ -42,8 +42,8 @@ describe('[util]: validation', () => {
 
   it('[checkForListErrors]: list with unreachables', () => {
     const list = [
-      new BoxIkCheatCode('acUb'),
-      new BoxIkCheatCode('acUbUbaD')
+      new BoxIkCheatCode('ac↑b'),
+      new BoxIkCheatCode('ac↑b↑ba↓')
     ];
     const errors = checkForListErrors(list);
     expect(errors.length).toEqual(1);
@@ -59,8 +59,8 @@ describe('[util]: validation', () => {
 
   it('[checkForListErrors]: list with no errors', () => {
     const list = [
-      new BoxIkCheatCode('acUbUbaD'),
-      new BoxIkCheatCode('UUDDLRLRba')
+      new BoxIkCheatCode('ac↑b↑ba↓'),
+      new BoxIkCheatCode('↑↑↓↓←→←→ba')
     ];
     const errors = checkForListErrors(list);
     expect(errors).toBeNull();

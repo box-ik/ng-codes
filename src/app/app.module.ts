@@ -20,13 +20,12 @@ import { BoxIkCheatCodesModule, BoxIkCheatCodesService, BoxIkCheatCode } from '@
 })
 export class AppModule {
   constructor(private cheatCodesService: BoxIkCheatCodesService) {
-    this.cheatCodesService.useCheatCodes([
-      new BoxIkCheatCode('acUbUbaD', 'logner cheat code'),
-      new BoxIkCheatCode('UbaD', 'small cheat code')
+    this.cheatCodesService.use([
+      new BoxIkCheatCode('↑↑↓↓←→←→ba', 'The Konami Code'),
+      new BoxIkCheatCode('iddqd', 'DOOM'),
+      new BoxIkCheatCode('abacabb', 'Mortal Kombat'),
+      new BoxIkCheatCode('^-^', 'Smile'),
+      new BoxIkCheatCode('l1r1↑↓←→→←↓↑', 'Twisted Metal 2')
     ]);
-
-    this.cheatCodesService.cheatCode.subscribe(cheat => {
-      console.log(cheat.description);
-    });
   }
 }

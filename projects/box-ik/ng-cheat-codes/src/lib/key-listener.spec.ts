@@ -35,9 +35,10 @@ describe('KeyListener', () => {
       new KeyboardEvent('keydown', { key: 'ArrowUp' }),
       new KeyboardEvent('keydown', { key: 'Enter' }),
       new KeyboardEvent('keydown', { key: 'u', shiftKey: true }),
-      new KeyboardEvent('keydown', { key: 'V' })
+      new KeyboardEvent('keydown', { key: 'V' }),
+      new KeyboardEvent('keydown', { key: 'Spacebar' })
     ];
-    const expectedKeys = ['q', 'U', 'E', 'v'];
+    const expectedKeys = ['q', '↑', '↵', 'u', 'v', ' '];
 
     keyListener.observable().subscribe(observer);
     for(let event of keyboardEvents) {
@@ -45,6 +46,7 @@ describe('KeyListener', () => {
     }
     keyListener.destroy();
     
+    expect(observer.next.calls.count()).toEqual(expectedKeys.length);
     for(let i = 0; i < expectedKeys.length; ++i) {
       const args: string[] = observer.next.calls.argsFor(i); 
       expect(args[0]).toEqual(expectedKeys[i]);
@@ -107,4 +109,25 @@ describe('KeyListener', () => {
     expect(observer.error).not.toHaveBeenCalled();
     expect(observer.complete).toHaveBeenCalled();
   });
+
+  it('shift press', () => {
+    const keyListener = new KeyListener();
+    const keys = [
+      new KeyboardEvent('keydown', { key: 'Shift' }),
+      new KeyboardEvent('keydown', { key: '^', shiftKey: true }),
+      new KeyboardEvent('keydown', { key: '-'}),
+      new KeyboardEvent('keydown', { key: 'Shift' }),
+      new KeyboardEvent('keydown', { key: '^', shiftKey: true }),
+    ];
+    const expectedKeys = ['^', '-', '^'];
+    keyListener.observable().subscribe(observer);
+    for(let key of keys) {
+      document.dispatchEvent(key);
+    }
+    expect(observer.next.calls.count()).toEqual(3);
+    for(let i = 0; i < expectedKeys.length; ++i) {
+      const args: string[] = observer.next.calls.argsFor(i); 
+      expect(args[0]).toEqual(expectedKeys[i]);
+    }
+  })
 });

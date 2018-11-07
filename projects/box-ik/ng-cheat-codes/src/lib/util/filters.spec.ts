@@ -12,7 +12,7 @@ describe('[util]: filters', () => {
   it('[filterKeysWithModifiers]', () => {
     // shift
     let event = new KeyboardEvent('keydown', { key: 'k', shiftKey: true });
-    expect(filterKeysWithModifiers(event)).toBeFalsy();
+    expect(filterKeysWithModifiers(event)).toBeTruthy();
     // crtl
     event = new KeyboardEvent('keydown', { key: 'k', ctrlKey: true });
     expect(filterKeysWithModifiers(event)).toBeFalsy();
@@ -40,6 +40,12 @@ describe('[util]: filters', () => {
     // Tab
     event = new KeyboardEvent('keydown', { key: 'Tab' });
     expect(filterUnusedKeys(event)).toBeFalsy();
+    // Tab
+    event = new KeyboardEvent('keydown', { key: 'Shift' });
+    expect(filterUnusedKeys(event)).toBeFalsy();
+    // Spacebar
+    event = new KeyboardEvent('keydown', { key: 'Spacebar' });
+    expect(filterUnusedKeys(event)).toBeTruthy();
     // any
     event = new KeyboardEvent('keydown', { key: 'k' });
     expect(filterUnusedKeys(event)).toBeTruthy();
