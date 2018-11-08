@@ -1,37 +1,43 @@
 
+span, p, button { display: inline; }
+
 .header {
   text-align: center;
+  margin-bottom: 4rem;
 }
 
-.content {
+.cheat-codes {
   display: flex;
   justify-content: center;
 
   .item {
-    padding: 2rem;
+    padding: 0 2rem 2rem 2rem;
     flex-basis: 30%;
 
     &:first-child {
       border-right: 1px solid orangered;
     }
+
+    ul {
+      li {
+        font-size: 1.5rem;
+      }
+      span { display: inline; font-weight: 800; color: orangered; }
+      li + span { display: none; }
+    }
   }
 }
 
-.demo {
+.keys {
   display: block;
-  padding: 2rem 0;
+  padding-top: 2rem;
+  font-size: 1.5rem;
   text-align: center;
-  font-size: 2rem;
+  p { color: grey; }
 
-  p {
-    display: inline;
-    padding: 2px;
-    border: 1px solid orangered;
-    border-radius: 4px;
-  }
   button {
-    height: 2rem;
-    margin-left: 1rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
     border-radius: 5px;
     vertical-align: middle;
     font-size: 1rem;
@@ -39,18 +45,26 @@
     color: orangered;
     background: white;
     outline: none;
-
-    &:active {
-      color: white;
-      background: orangered;
-    }
+    
+    &:active { color: white; background: orangered; }
   }
 }
 
-ul {
-  li {
-    font-size: 1.5rem;
+.toolbar {
+  display: block;
+  padding: 1.5rem 0;
+
+  .status {
+    p { color: green; }
   }
-  span { display: inline; font-weight: 800; color: orangered; }
-  li + span { display: none; }
+
+  .settings {
+    margin-right: 1rem;
+    label { margin-left: 0.5rem; }
+    input[type="number"] { width: 150px; }
+  }
+}
+
+div.input {
+  p, input, textarea { display: block; width: 300px; margin-bottom: 1rem; }
 }

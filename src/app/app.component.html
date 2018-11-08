@@ -4,11 +4,9 @@
   <h1>@box-ik/ng-cheat-codes</h1>
 </div>
 
-<span class="demo">
-  Keys Pressed: <p>{{ keys }}</p> <button (click)="onClear()">clear</button>
-</span>
-
-<div class="content">
+<div class="cheat-codes">
+  
+  <!-- list of available cheat codes-->
   <div class="item">
     <h2>Cheat Codes Available</h2>
     <ul>
@@ -18,6 +16,7 @@
     </ul>
   </div>
 
+  <!-- list of activated cheat codes -->
   <div class="item">
     <h2>Activated</h2>
     <ul>
@@ -29,6 +28,43 @@
   </div>
 </div>
 
-<input type="text"><input type="text">
+<div class="keys">
+  <span>Keys Pressed: </span> <p>{{ keys | uppercase }}</p> <button (click)="onClear()">clear</button>
+</div>
+
+<div class="toolbar">
+  <div class="status">
+    <span>Status: </span>
+    <p *ngIf="!cheatCodesService.paused && !focused">listening</p>
+    <p *ngIf="cheatCodesService.paused">paused by User</p>
+    <p *ngIf="!cheatCodesService.paused && !!focused">paused while {{ focused }} active</p>
+  </div>
+
+  <div class="settings">
+    <h3>Settings:</h3>
+    <ul>
+      <li>
+        <input id="paused" type="checkbox" [(ngModel)]="cheatCodesService.paused" (focus)="onFocus($event)" (blur)="onBlur()">
+        <label for="paused">pause</label>
+      </li>
+      <li>
+        <input id="time" type="number" [(ngModel)]="cheatCodesService.resetInputInterval" (focus)="onFocus($event)" (blur)="onBlur()">
+        <label for="time">reset input interval (ms)</label>
+      </li>
+    </ul>
+  </div>
+
+  <h3>ignore input while Input or TextArea active</h3>
+  <div class="input">
+    <span>Input</span>
+    <input type="text" (focus)="onFocus($event)" (blur)="onBlur()">
+  </div>
+  <div class="input">
+    <span>TextArea</span>
+    <textarea (focus)="onFocus($event)" (blur)="onBlur()" cols="10" rows="2"></textarea>
+  </div>
+</div>
+
+
 
 <router-outlet></router-outlet>

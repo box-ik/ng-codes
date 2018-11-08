@@ -12,6 +12,7 @@ export class AppComponent {
 
   keyListener = new KeyListener();
   keys: string = '';
+  focused: string = '';
 
   constructor(public cheatCodesService: BoxIkCheatCodesService) {
     this.cheatCodesService.cheatCode.subscribe((cheatCode: BoxIkCheatCode) => {
@@ -25,5 +26,13 @@ export class AppComponent {
 
   onClear() {
     this.keys = '';
+  }
+
+  onFocus($event) {
+    this.focused = $event.target.tagName;
+  }
+
+  onBlur() {
+    this.focused = '';
   }
 }
