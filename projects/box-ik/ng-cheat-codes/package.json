@@ -4,6 +4,10 @@
   "license": "MIT",
   "author": "Ihor Klieshchov <space.boxik@gmail.com>",
   "version": "1.0.0",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Box-IK/ng-cheat-codes.git"
+  },
   "keywords": [
     "angular",
     "box-ik",
