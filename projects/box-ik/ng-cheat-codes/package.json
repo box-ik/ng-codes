@@ -1,6 +1,15 @@
 {
   "name": "@box-ik/ng-cheat-codes",
+  "description": "Cheat Codes for Angular - create events for keystroke sequences",
+  "license": "MIT",
+  "author": "Ihor Klieshchov <space.boxik@gmail.com>",
   "version": "1.0.0",
+  "keywords": [
+    "angular",
+    "box-ik",
+    "cheat codes",
+    "cheat code"
+  ],
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0"

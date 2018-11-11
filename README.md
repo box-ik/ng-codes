@@ -103,3 +103,6 @@ Possible errors:
   * **InvalidSymbolsInCheatCode** `(Cheat code '<code>' has invalid symbols <symbols>)` - check that cheat code sequence has no uppercase symbols;
   * **UnreachableCheatCode** `(Cheat code '<subcode0><subcode1>' is unreachable because of '<subcode0>')` - substring cheat codes are reachable only if they are suffixes;
   * **DuplicateCheatCode** `(Cheat code '<code>' has duplicates)` - trying to add multiple cheat codes with the same input sequence.
+
+## License
+MIT
