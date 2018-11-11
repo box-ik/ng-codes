@@ -7,7 +7,7 @@ describe('KeyBuffer', () => {
   it('initialization', () => {
     const keyBuffer = new KeyBuffer();
     expect(keyBuffer.buffer).toEqual('');
-    expect(keyBuffer.resetInputInterval).toEqual(1000);
+    expect(keyBuffer.resetInterval).toEqual(1000);
   });
 
   it('append', (done) => {
@@ -20,7 +20,7 @@ describe('KeyBuffer', () => {
     expect(keyBuffer.buffer).toEqual('qwe');
     
     // append after time limit
-    keyBuffer.resetInputInterval = 10;
+    keyBuffer.resetInterval = 10;
     setTimeout(() => {
       keyBuffer.append('r');
       keyBuffer.append('t');

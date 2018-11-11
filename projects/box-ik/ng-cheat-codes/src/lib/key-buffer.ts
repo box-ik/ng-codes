@@ -2,12 +2,12 @@ import { BoxIkCheatCode } from "./types";
 
 export class KeyBuffer {
 
-  resetInputInterval = 1000;
+  resetInterval = 1000;
 
   append(key: string) {
 
     const time = Date.now();
-    if (time - this.timestamp > this.resetInputInterval) {
+    if (time - this.timestamp > this.resetInterval) {
       this.reset();
     }
     this.timestamp = time;

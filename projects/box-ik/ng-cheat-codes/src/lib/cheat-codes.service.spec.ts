@@ -21,7 +21,7 @@ describe('BoxIkCheatCodesService', () => {
     expect(service).toBeTruthy();
     expect(service.list().length).toEqual(0);
     expect(service.paused).toBeFalsy();
-    expect(service.resetInputInterval).toEqual(1000);
+    expect(service.resetInterval).toEqual(1000);
   });
 
   it('use valid cheat code', () => {
@@ -44,20 +44,22 @@ describe('BoxIkCheatCodesService', () => {
   it('use duplicate cheat codes', () => {
     // duplicated cheat codes could not be added to list
     // warning will be logged
-    service.use([
+    const errors = service.use([
       new BoxIkCheatCode('↑↑↓↓←→←→ba'),
       new BoxIkCheatCode('↑↑↓↓←→←→ba')
     ]);
+    expect(errors.length).toEqual(1);
     expect(service.list().length).toEqual(1);
   });
 
   it('use unreachable cheat codes', () => {
     // unreachable cheat codes could not be added to list
     // warning will be logged
-    service.use([
+    const errors = service.use([
       new BoxIkCheatCode('↑↑↓↓←→←→ba'),
       new BoxIkCheatCode('↑↑↓↓')
     ]);
+    expect(errors.length).toEqual(1);
     expect(service.list().length).toEqual(1);
   });
 
@@ -88,10 +90,10 @@ describe('BoxIkCheatCodesService', () => {
     expect(observer.next).not.toHaveBeenCalled();
   });
 
-  it('autoResetInterval', (done) => {
+  it('resetInterval', (done) => {
     service.cheatCode.subscribe(observer);
     service.use([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
-    service.resetInputInterval = 10;
+    service.resetInterval = 10;
     enterCode('↑↑↓↓');
     setTimeout(() => {
       enterCode('←→←→ba');

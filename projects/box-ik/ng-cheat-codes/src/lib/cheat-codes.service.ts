@@ -3,27 +3,22 @@ import { Observable, Subject } from 'rxjs';
 import { KeyListener } from './key-listener';
 import { KeyBuffer } from './key-buffer';
 import { CheatCodeStorage } from './cheat-code-storage';
-import { BoxIkCheatCode } from './types';
+import { BoxIkCheatCode, CheatCodeError } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoxIkCheatCodesService implements OnDestroy {
 
-  public use(codes: BoxIkCheatCode[]) {
-    let errors = this.storage.add(codes);
-    if (errors) {
-      errors.forEach(error => {
-        error.print();
-      });
-    }
+  public use(cheatCodes: BoxIkCheatCode[]): CheatCodeError[] | null {
+    return this.storage.add(cheatCodes);
   }
 
   public list(): BoxIkCheatCode[] {
     return this.storage.cheatCodes;
   }
 
-  public removeAll() {
+  public removeAll(): void {
     this.storage.clear();
   }
 
@@ -38,11 +33,11 @@ export class BoxIkCheatCodesService implements OnDestroy {
     this.keyListener.paused = value;
   }
 
-  public get resetInputInterval(): number {
-    return this.keyBuffer.resetInputInterval;
+  public get resetInterval(): number {
+    return this.keyBuffer.resetInterval;
   }
-  public set resetInputInterval(value: number) {
-    this.keyBuffer.resetInputInterval = value;
+  public set resetInterval(value: number) {
+    this.keyBuffer.resetInterval = value;
   }
 
   constructor() {

@@ -24,9 +24,8 @@ export class AppModule {
   constructor(private cheatCodesService: BoxIkCheatCodesService) {
     this.cheatCodesService.use([
       new BoxIkCheatCode('↑↑↓↓←→←→ba', 'The Konami Code'),
-      new BoxIkCheatCode('iddqd', 'DOOM'),
-      new BoxIkCheatCode('abacabb', 'Mortal Kombat'),
-      new BoxIkCheatCode('l1r1↑↓←→→←↓↑', 'Twisted Metal 2')
+      new BoxIkCheatCode('iddqd', 'DOOM: God Mode'),
+      new BoxIkCheatCode('abacabb', 'Mortal Kombat: Blood Code')
     ]);
   }
 }
