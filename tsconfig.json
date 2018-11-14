@@ -18,11 +18,11 @@
       "dom"
     ],
     "paths": {
-      "@box-ik/ng-cheat-codes": [
-        "dist/box-ik/ng-cheat-codes"
+      "@box-ik/ng-codes": [
+        "dist/box-ik/ng-codes"
       ],
-      "@box-ik/ng-cheat-codes/*": [
-        "dist/box-ik/ng-cheat-codes/*"
+      "@box-ik/ng-codes/*": [
+        "dist/box-ik/ng-codes/*"
       ]
     }
   }

@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { BoxIkCheatCodesService } from './cheat-codes.service';
-import { BoxIkCheatCode } from './types';
+import { BoxIkNgCodesService } from './ng-codes.service';
+import { BoxIkCode } from './types';
 
-describe('BoxIkCheatCodesService', () => {
+describe('BoxIkNgCodesService', () => {
   
-  let service: BoxIkCheatCodesService;
+  let service: BoxIkNgCodesService;
   let observer;
     
   beforeEach(() => {
     TestBed.configureTestingModule({})
-    service = TestBed.get(BoxIkCheatCodesService);
+    service = TestBed.get(BoxIkNgCodesService);
     observer = {
       next: jasmine.createSpy('next'),
       error: jasmine.createSpy('error'),
@@ -24,40 +24,40 @@ describe('BoxIkCheatCodesService', () => {
     expect(service.resetInterval).toEqual(1000);
   });
 
-  it('use valid cheat code', () => {
+  it('use valid code', () => {
     service.use([
-      new BoxIkCheatCode('↑↑↓↓←→←→ba'),
+      new BoxIkCode('↑↑↓↓←→←→ba'),
     ]);
     expect(service.list().length).toEqual(1);
   });
 
-  it('use invalid cheat code', () => {
-    // invalid cheat codes could not be added to list
+  it('use invalid code', () => {
+    // invalid codes could not be added to list
     // error will be logged
     service.use([
-      new BoxIkCheatCode(''),
-      new BoxIkCheatCode('HELLO')
+      new BoxIkCode(''),
+      new BoxIkCode('HELLO')
     ]);
     expect(service.list().length).toEqual(0);
   });
 
-  it('use duplicate cheat codes', () => {
-    // duplicated cheat codes could not be added to list
+  it('use duplicate codes', () => {
+    // duplicated codes could not be added to list
     // warning will be logged
     const errors = service.use([
-      new BoxIkCheatCode('↑↑↓↓←→←→ba'),
-      new BoxIkCheatCode('↑↑↓↓←→←→ba')
+      new BoxIkCode('↑↑↓↓←→←→ba'),
+      new BoxIkCode('↑↑↓↓←→←→ba')
     ]);
     expect(errors.length).toEqual(1);
     expect(service.list().length).toEqual(1);
   });
 
-  it('use unreachable cheat codes', () => {
-    // unreachable cheat codes could not be added to list
+  it('use unreachable codes', () => {
+    // unreachable codes could not be added to list
     // warning will be logged
     const errors = service.use([
-      new BoxIkCheatCode('↑↑↓↓←→←→ba'),
-      new BoxIkCheatCode('↑↑↓↓')
+      new BoxIkCode('↑↑↓↓←→←→ba'),
+      new BoxIkCode('↑↑↓↓')
     ]);
     expect(errors.length).toEqual(1);
     expect(service.list().length).toEqual(1);
@@ -65,25 +65,25 @@ describe('BoxIkCheatCodesService', () => {
 
   it('removeAll', () => {
     service.use([
-      new BoxIkCheatCode('↑↑↓↓←→←→ba')
+      new BoxIkCode('↑↑↓↓←→←→ba')
     ]);
     service.removeAll();
     expect(service.list().length).toEqual(0);
   });
 
-  it('cheatCode (subscription)', () => {
-    service.cheatCode.subscribe(observer);
+  it('code (subscription)', () => {
+    service.code.subscribe(observer);
 
     enterCode('↑↑↓↓←→←→ba');
-    service.use([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
+    service.use([new BoxIkCode('↑↑↓↓←→←→ba')]);
     enterCode('↑↑↓↓←→←→ba');
 
     expect(observer.next).toHaveBeenCalledTimes(1);
   });
 
   it('paused', () => {
-    service.cheatCode.subscribe(observer);
-    service.use([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
+    service.code.subscribe(observer);
+    service.use([new BoxIkCode('↑↑↓↓←→←→ba')]);
     service.paused = true;
     enterCode('↑↑↓↓←→←→ba');
 
@@ -91,8 +91,8 @@ describe('BoxIkCheatCodesService', () => {
   });
 
   it('resetInterval', (done) => {
-    service.cheatCode.subscribe(observer);
-    service.use([new BoxIkCheatCode('↑↑↓↓←→←→ba')]);
+    service.code.subscribe(observer);
+    service.use([new BoxIkCode('↑↑↓↓←→←→ba')]);
     service.resetInterval = 10;
     enterCode('↑↑↓↓');
     setTimeout(() => {

@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../dist/box-ik/ng-cheat-codes",
+  "dest": "../../../dist/box-ik/ng-codes",
   "lib": {
     "entryFile": "src/public_api.ts"
   }

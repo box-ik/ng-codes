@@ -1,0 +1,19 @@
+{
+  "name": "@box-ik/ng-codes",
+  "description": "Codes for Angular - create events for keystroke sequences",
+  "license": "MIT",
+  "author": "Ihor Klieshchov <space.boxik@gmail.com>",
+  "version": "1.0.0",
+  "repository": "github:box-ik/ng-codes.git",
+  "keywords": [
+    "angular",
+    "box-ik",
+    "codes",
+    "code",
+    "game codes"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
+  }
+}

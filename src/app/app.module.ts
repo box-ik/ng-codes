@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
-import { BoxIkCheatCodesModule, BoxIkCheatCodesService, BoxIkCheatCode } from '@box-ik/ng-cheat-codes';
+import { BoxIkNgCodesModule, BoxIkNgCodesService, BoxIkCode } from '@box-ik/ng-codes';
 
 @NgModule({
   declarations: [
@@ -15,17 +15,17 @@ import { BoxIkCheatCodesModule, BoxIkCheatCodesService, BoxIkCheatCode } from '@
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BoxIkCheatCodesModule
+    BoxIkNgCodesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private cheatCodesService: BoxIkCheatCodesService) {
-    this.cheatCodesService.use([
-      new BoxIkCheatCode('↑↑↓↓←→←→ba', 'The Konami Code'),
-      new BoxIkCheatCode('iddqd', 'DOOM: God Mode'),
-      new BoxIkCheatCode('abacabb', 'Mortal Kombat: Blood Code')
+  constructor(private ngCodesService: BoxIkNgCodesService) {
+    this.ngCodesService.use([
+      new BoxIkCode('↑↑↓↓←→←→ba', 'The Konami Code'),
+      new BoxIkCode('iddqd', 'DOOM: God Mode'),
+      new BoxIkCode('abacabb', 'Mortal Kombat: Blood Code')
     ]);
   }
 }

@@ -1,6 +1,6 @@
 
-import { normalizeKey, sortCheatCodes } from './transform';
-import { BoxIkCheatCode } from '../types';
+import { normalizeKey, sortCodes } from './transform';
+import { BoxIkCode } from '../types';
 
 describe('[util]: transform', () => {
 
@@ -18,15 +18,15 @@ describe('[util]: transform', () => {
     expect(normalizeKey('k')).toEqual('k');
   });
 
-  it('[sortCheatCodes]', () => {
+  it('[sortCodes]', () => {
     const list = [
-      new BoxIkCheatCode('middle'),
-      new BoxIkCheatCode('sh'),
-      new BoxIkCheatCode('longcheatcode')
+      new BoxIkCode('middle'),
+      new BoxIkCode('sh'),
+      new BoxIkCode('longcode')
     ];
-    const sorted = sortCheatCodes(list);
-    expect(sorted[0].code).toEqual('sh');
-    expect(sorted[1].code).toEqual('middle');
-    expect(sorted[2].code).toEqual('longcheatcode');
+    const sorted = sortCodes(list);
+    expect(sorted[0].value).toEqual('sh');
+    expect(sorted[1].value).toEqual('middle');
+    expect(sorted[2].value).toEqual('longcode');
   });
 });

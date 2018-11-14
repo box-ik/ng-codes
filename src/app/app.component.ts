@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BoxIkCheatCodesService, BoxIkCheatCode } from '@box-ik/ng-cheat-codes';
-import { KeyListener } from '../../projects/box-ik/ng-cheat-codes/src/lib/key-listener';
+import { BoxIkNgCodesService, BoxIkCode } from '@box-ik/ng-codes';
+import { KeyListener } from '../../projects/box-ik/ng-codes/src/lib/key-listener';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,15 @@ import { KeyListener } from '../../projects/box-ik/ng-cheat-codes/src/lib/key-li
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  activated: BoxIkCheatCode[] = [];
+  activated: BoxIkCode[] = [];
 
   keyListener = new KeyListener();
   keys: string = '';
   focused: string = '';
 
-  constructor(public cheatCodesService: BoxIkCheatCodesService) {
-    this.cheatCodesService.cheatCode.subscribe((cheatCode: BoxIkCheatCode) => {
-      this.activated.push(cheatCode);
+  constructor(public ngCodesService: BoxIkNgCodesService) {
+    this.ngCodesService.code.subscribe((code: BoxIkCode) => {
+      this.activated.push(code);
     });
 
     this.keyListener.observable().subscribe(key => {

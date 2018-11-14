@@ -2,27 +2,27 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { KeyListener } from './key-listener';
 import { KeyBuffer } from './key-buffer';
-import { CheatCodeStorage } from './cheat-code-storage';
-import { BoxIkCheatCode, CheatCodeError } from './types';
+import { CodeStorage } from './code-storage';
+import { BoxIkCode, CodeError } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BoxIkCheatCodesService implements OnDestroy {
+export class BoxIkNgCodesService implements OnDestroy {
 
-  public use(cheatCodes: BoxIkCheatCode[]): CheatCodeError[] | null {
-    return this.storage.add(cheatCodes);
+  public use(codes: BoxIkCode[]): CodeError[] | null {
+    return this.storage.add(codes);
   }
 
-  public list(): BoxIkCheatCode[] {
-    return this.storage.cheatCodes;
+  public list(): BoxIkCode[] {
+    return this.storage.codes;
   }
 
   public removeAll(): void {
     this.storage.clear();
   }
 
-  public get cheatCode(): Observable<BoxIkCheatCode> {
+  public get code(): Observable<BoxIkCode> {
     return this.match$.asObservable();
   }
 
@@ -41,16 +41,16 @@ export class BoxIkCheatCodesService implements OnDestroy {
   }
 
   constructor() {
-    this.storage = new CheatCodeStorage();
+    this.storage = new CodeStorage();
     this.keyListener = new KeyListener();
     this.keyBuffer = new KeyBuffer();
     this.keyListener.observable().subscribe(this.onKey.bind(this));
   }
 
-  private storage: CheatCodeStorage;
+  private storage: CodeStorage;
   private keyListener: KeyListener;
   private keyBuffer: KeyBuffer;
-  private match$: Subject<BoxIkCheatCode> = new Subject();
+  private match$: Subject<BoxIkCode> = new Subject();
 
   ngOnDestroy() {
     this.keyListener.destroy();
@@ -58,7 +58,7 @@ export class BoxIkCheatCodesService implements OnDestroy {
 
   private onKey(key: string) {
     this.keyBuffer.append(key);
-    const match = this.keyBuffer.match(this.storage.cheatCodes);
+    const match = this.keyBuffer.match(this.storage.codes);
     if (match) {
       this.match$.next(match);
     }

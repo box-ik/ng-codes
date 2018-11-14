@@ -1,27 +1,27 @@
 <div class="header">
   <h1>BoxIK</h1>
   <img src="../assets/boxik-logo.svg" width="140" height="140" alt="BoxIK Logo">
-  <h1>@box-ik/ng-cheat-codes</h1>
+  <h1>@box-ik/ng-codes</h1>
 </div>
 
-<div class="cheat-codes">
+<div class="codes">
   
-  <!-- list of available cheat codes-->
+  <!-- list of available codes-->
   <div class="item">
-    <h2>Cheat Codes Available</h2>
+    <h2>Codes Available</h2>
     <ul>
-      <li *ngFor="let cheatCode of cheatCodesService.list()">
-        <b>{{ cheatCode.description }}</b> ({{ cheatCode.code | uppercase }})
+      <li *ngFor="let code of ngCodesService.list()">
+        <b>{{ code.description }}</b> ({{ code.code | uppercase }})
       </li>
     </ul>
   </div>
 
-  <!-- list of activated cheat codes -->
+  <!-- list of activated codes -->
   <div class="item">
     <h2>Activated</h2>
     <ul>
-      <li *ngFor="let cheatCode of activated">
-        {{ cheatCode.description }}
+      <li *ngFor="let code of activated">
+        {{ code.description }}
       </li>
       <span>NONE</span>
     </ul>
@@ -35,20 +35,20 @@
 <div class="toolbar">
   <div class="status">
     <span>Status: </span>
-    <p *ngIf="!cheatCodesService.paused && !focused">listening</p>
-    <p *ngIf="cheatCodesService.paused">paused by User</p>
-    <p *ngIf="!cheatCodesService.paused && !!focused">paused while {{ focused }} active</p>
+    <p *ngIf="!ngCodesService.paused && !focused">listening</p>
+    <p *ngIf="ngCodesService.paused">paused by User</p>
+    <p *ngIf="!ngCodesService.paused && !!focused">paused while {{ focused }} active</p>
   </div>
 
   <div class="settings">
     <h3>Settings:</h3>
     <ul>
       <li>
-        <input id="paused" type="checkbox" [(ngModel)]="cheatCodesService.paused" (focus)="onFocus($event)" (blur)="onBlur()">
+        <input id="paused" type="checkbox" [(ngModel)]="ngCodesService.paused" (focus)="onFocus($event)" (blur)="onBlur()">
         <label for="paused">pause</label>
       </li>
       <li>
-        <input id="time" type="number" [(ngModel)]="cheatCodesService.resetInterval" (focus)="onFocus($event)" (blur)="onBlur()">
+        <input id="time" type="number" [(ngModel)]="ngCodesService.resetInterval" (focus)="onFocus($event)" (blur)="onBlur()">
         <label for="time">reset input interval (ms)</label>
       </li>
     </ul>

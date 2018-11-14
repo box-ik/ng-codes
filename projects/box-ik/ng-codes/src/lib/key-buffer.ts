@@ -1,4 +1,4 @@
-import { BoxIkCheatCode } from "./types";
+import { BoxIkCode } from "./types";
 
 export class KeyBuffer {
 
@@ -18,12 +18,12 @@ export class KeyBuffer {
     this._buffer = '';
   }
 
-  match(cheatCodes: BoxIkCheatCode[]): BoxIkCheatCode | null {
-    for(let i = cheatCodes.length - 1; i >= 0; --i) {
-      const cheatCode = cheatCodes[i];
-      if (this._buffer.includes(cheatCode.code)) {
+  match(codes: BoxIkCode[]): BoxIkCode | null {
+    for(let i = codes.length - 1; i >= 0; --i) {
+      const code = codes[i];
+      if (this._buffer.includes(code.value)) {
         this.reset();
-        return cheatCode;
+        return code;
       }
     }
     return null;

@@ -1,12 +1,12 @@
 {
-  "name": "cheat-codes",
+  "name": "ng-codes",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test:lib": "ng test @box-ik/ng-cheat-codes", 
-    "lint:lib": "ng lint @box-ik/ng-cheat-codes",
-    "build:lib": "ng build @box-ik/ng-cheat-codes"
+    "test:lib": "ng test @box-ik/ng-codes", 
+    "lint:lib": "ng lint @box-ik/ng-codes",
+    "build:lib": "ng build @box-ik/ng-codes"
   },
   "private": true,
   "dependencies": {

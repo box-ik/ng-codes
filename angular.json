@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cheat-codes": {
+    "ng-codes": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cheat-codes",
+            "outputPath": "dist/ng-codes",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cheat-codes:build"
+            "browserTarget": "ng-codes:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cheat-codes:build:production"
+              "browserTarget": "ng-codes:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cheat-codes:build"
+            "browserTarget": "ng-codes:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "cheat-codes-e2e": {
+    "ng-codes-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cheat-codes:serve"
+            "devServerTarget": "ng-codes:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cheat-codes:serve:production"
+              "devServerTarget": "ng-codes:serve:production"
             }
           }
         },
@@ -134,33 +134,33 @@
         }
       }
     },
-    "@box-ik/ng-cheat-codes": {
-      "root": "projects/box-ik/ng-cheat-codes",
-      "sourceRoot": "projects/box-ik/ng-cheat-codes/src",
+    "@box-ik/ng-codes": {
+      "root": "projects/box-ik/ng-codes",
+      "sourceRoot": "projects/box-ik/ng-codes/src",
       "projectType": "library",
       "prefix": "box-ik",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/box-ik/ng-cheat-codes/tsconfig.lib.json",
-            "project": "projects/box-ik/ng-cheat-codes/ng-package.json"
+            "tsConfig": "projects/box-ik/ng-codes/tsconfig.lib.json",
+            "project": "projects/box-ik/ng-codes/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/box-ik/ng-cheat-codes/src/test.ts",
-            "tsConfig": "projects/box-ik/ng-cheat-codes/tsconfig.spec.json",
-            "karmaConfig": "projects/box-ik/ng-cheat-codes/karma.conf.js"
+            "main": "projects/box-ik/ng-codes/src/test.ts",
+            "tsConfig": "projects/box-ik/ng-codes/tsconfig.spec.json",
+            "karmaConfig": "projects/box-ik/ng-codes/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/box-ik/ng-cheat-codes/tsconfig.lib.json",
-              "projects/box-ik/ng-cheat-codes/tsconfig.spec.json"
+              "projects/box-ik/ng-codes/tsconfig.lib.json",
+              "projects/box-ik/ng-codes/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -170,5 +170,5 @@
       }
     }
   },
-  "defaultProject": "cheat-codes"
+  "defaultProject": "ng-codes"
 }

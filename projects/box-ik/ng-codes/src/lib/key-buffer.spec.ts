@@ -1,6 +1,6 @@
 
 import { KeyBuffer } from './key-buffer';
-import { BoxIkCheatCode } from './types';
+import { BoxIkCode } from './types';
 
 describe('KeyBuffer', () => {
 
@@ -40,8 +40,8 @@ describe('KeyBuffer', () => {
   it('match', () => {
     const keyBuffer = new KeyBuffer();
     const list = [
-      new BoxIkCheatCode('baD'),
-      new BoxIkCheatCode('acUbUbaD'),
+      new BoxIkCode('baD'),
+      new BoxIkCode('acUbUbaD'),
     ];
 
     // suffix
@@ -49,7 +49,7 @@ describe('KeyBuffer', () => {
       keyBuffer.append(key);
     }
     let code = keyBuffer.match(list);
-    expect(code.code).toEqual('baD');
+    expect(code.value).toEqual('baD');
     expect(keyBuffer.buffer).toEqual('');
 
     // longers suffix
@@ -57,7 +57,7 @@ describe('KeyBuffer', () => {
       keyBuffer.append(key);
     }
     code = keyBuffer.match(list);
-    expect(code.code).toEqual('acUbUbaD');
+    expect(code.value).toEqual('acUbUbaD');
     expect(keyBuffer.buffer).toEqual('');
 
     // no match
