@@ -3,7 +3,7 @@
   "description": "Codes for Angular - create events for keystroke sequences",
   "license": "MIT",
   "author": "Ihor Klieshchov <space.boxik@gmail.com>",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "github:box-ik/ng-codes.git",
   "keywords": [
     "angular",
