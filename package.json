@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test:lib": "ng test @box-ik/ng-codes", 
+    "copy": "copyfiles README.md LICENSE dist/box-ik/ng-codes",
+    "test:lib": "ng test @box-ik/ng-codes",
     "lint:lib": "ng lint @box-ik/ng-codes",
-    "build:lib": "ng build @box-ik/ng-codes"
+    "build:lib": "ng build @box-ik/ng-codes && npm run copy"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "copyfiles": "^2.1.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
