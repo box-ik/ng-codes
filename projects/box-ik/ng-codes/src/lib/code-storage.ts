@@ -1,8 +1,12 @@
-
+import { Injectable } from '@angular/core';
+import { BoxIkNgCodesServiceModule } from './ng-codes-service.module';
 import { BoxIkCode, CodeError } from './types';
 import { checkForInvalidSymbols, checkForListErrors } from './util';
 import { sortCodes } from './util';
 
+@Injectable({
+  providedIn: BoxIkNgCodesServiceModule
+})
 export class CodeStorage {
 
   get codes(): BoxIkCode[] {

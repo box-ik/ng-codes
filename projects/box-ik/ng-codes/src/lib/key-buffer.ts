@@ -1,5 +1,10 @@
+import { Injectable } from '@angular/core';
+import { BoxIkNgCodesServiceModule } from './ng-codes-service.module';
 import { BoxIkCode } from "./types";
 
+@Injectable({
+  providedIn: BoxIkNgCodesServiceModule
+})
 export class KeyBuffer {
 
   resetInterval = 1000;

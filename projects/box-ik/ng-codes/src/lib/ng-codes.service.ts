@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { KeyListener } from './key-listener';
 import { KeyBuffer } from './key-buffer';
@@ -40,16 +40,14 @@ export class BoxIkNgCodesService implements OnDestroy {
     this.keyBuffer.resetInterval = value;
   }
 
-  constructor() {
-    this.storage = new CodeStorage();
-    this.keyListener = new KeyListener();
-    this.keyBuffer = new KeyBuffer();
+  constructor(
+    private storage: CodeStorage,
+    private keyListener: KeyListener,
+    private keyBuffer: KeyBuffer
+  ) {
     this.keyListener.observable().subscribe(this.onKey.bind(this));
   }
 
-  private storage: CodeStorage;
-  private keyListener: KeyListener;
-  private keyBuffer: KeyBuffer;
   private match$: Subject<BoxIkCode> = new Subject();
 
   ngOnDestroy() {

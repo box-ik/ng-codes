@@ -1,6 +1,8 @@
-import { TestBed } from '@angular/core/testing';
 import { BoxIkNgCodesService } from './ng-codes.service';
 import { BoxIkCode } from './types';
+import { CodeStorage } from './code-storage';
+import { KeyListener } from './key-listener';
+import { KeyBuffer } from './key-buffer';
 
 describe('BoxIkNgCodesService', () => {
   
@@ -8,8 +10,11 @@ describe('BoxIkNgCodesService', () => {
   let observer;
     
   beforeEach(() => {
-    TestBed.configureTestingModule({})
-    service = TestBed.get(BoxIkNgCodesService);
+    service = new BoxIkNgCodesService(
+      new CodeStorage(),
+      new KeyListener(),
+      new KeyBuffer()
+    );
     observer = {
       next: jasmine.createSpy('next'),
       error: jasmine.createSpy('error'),

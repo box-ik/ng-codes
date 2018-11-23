@@ -1,10 +1,14 @@
 
-
+import { Injectable } from '@angular/core';
 import { Observable, fromEvent, Subject } from 'rxjs';
 import { takeUntil, filter, map } from 'rxjs/operators';
+import { BoxIkNgCodesServiceModule } from './ng-codes-service.module';
 import { filterKeysWithModifiers, filterUnusedKeys, filterAllWhenTextInputsActive} from './util';
 import { normalizeKey } from './util';
 
+@Injectable({
+  providedIn: BoxIkNgCodesServiceModule
+})
 export class KeyListener {
 
   paused: boolean = false;

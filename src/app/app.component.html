@@ -11,7 +11,7 @@
     <h2>Codes Available</h2>
     <ul>
       <li *ngFor="let code of ngCodesService.list()">
-        <b>{{ code.description }}</b> ({{ code.code | uppercase }})
+        <b>{{ code.description }}</b> ({{ code.value | uppercase }})
       </li>
     </ul>
   </div>
